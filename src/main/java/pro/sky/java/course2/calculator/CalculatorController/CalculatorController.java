@@ -21,24 +21,33 @@ public class CalculatorController {
     }
 
     @GetMapping(path = "/plus")
-    public String plus(@RequestParam Integer num1, Integer num2) {
+    public String plus(@RequestParam(required = false) Integer num1,
+                       @RequestParam(required = false) Integer num2) {
+        if (num1 == null || num2 == null) return "Введите параметр";
 
-        return calculatorService.plus(num1, num2);
+        return num1 + "+" + num2 + "=" + calculatorService.plus(num1, num2);
     }
 
     @GetMapping(path = "/minus")
-    public String minus(@RequestParam Integer num1, Integer num2) {
-        return calculatorService.minus(num1, num2);
+    public String minus(@RequestParam(required = false) Integer num1,
+                        @RequestParam(required = false) Integer num2) {
+        if (num1 == null || num2 == null) return "Введите параметр";
+        return num1 + "-" + num2 + "=" + calculatorService.minus(num1, num2);
     }
 
     @GetMapping(path = "/multiply")
-    public String multiply(@RequestParam Integer num1, Integer num2) {
-        return calculatorService.multiply(num1, num2);
+    public String multiply(@RequestParam(required = false) Integer num1,
+                           @RequestParam(required = false) Integer num2) {
+        if (num1 == null || num2 == null) return "Введите параметр";
+        return num1 + "*" + num2 + "=" + calculatorService.multiply(num1, num2);
     }
 
     @GetMapping(path = "/divide")
-    public String divide(@RequestParam Integer num1, Integer num2) {
-        return calculatorService.divide(num1, num2);
+    public String divide(@RequestParam(required = false) Integer num1,
+                         @RequestParam(required = false) Integer num2) {
+        if (num1 == null || num2 == null) return "Введите параметр";
+        if (num2 == 0) return "На ноль делить нельзя";
+        return num1 + "/" + num2 + "=" + calculatorService.divide(num1, num2);
     }
 }
 
